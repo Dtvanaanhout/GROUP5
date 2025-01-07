@@ -10,9 +10,8 @@ class FillLocData:
     def get_zipcode(self, lat, lon):
         try:
             location = self.geolocator.reverse((lat, lon), exactly_one=True , timeout=10)
-            print(location)
             if location and 'postcode' in location.raw['address']:
-                return location.raw['address']['postcode']
+                return location.raw['address']['postcode'][:5]
         except GeocoderTimedOut:
             return None
         return None
